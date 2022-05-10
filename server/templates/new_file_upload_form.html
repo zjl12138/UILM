@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image Upload</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h1>Image Upload Demo</h1>
+
+<form id="upload-form" action="{{ url_for('new_get_bbox') }}" method="POST" enctype="multipart/form-data">
+    <strong>Select Box:</strong><br>
+    <select class="select-model" name="config" data-nextcombo=".select-checkpoint">
+        {% for config in configs %}
+        <option value="{{config.name}}" data-id="{{config.name}}">{{config.name}}</option>
+        {% endfor %}
+    </select><br>
+    <select class="select-checkpoint" name="checkpoint" data-nextcombo=".select-config">
+        <option></option>
+        {% for config in configs %}
+        {% for checkpoint in config.checkpoints %}
+        <option value="{{checkpoint}}" data-id="{{config.name}}" data-option="{{config.name}}">{{checkpoint}}</option>
+        {% endfor %}
+        {% endfor %}
+    </select><br>
+    <select class="select-config">
+        <option></option>
+        {% for config in configs %}
+        <option value="{{config.config}}" data-option="{{config.name}}">{{config.config}}</option>
+        {% endfor %}
+    </select><br>
+
+    <strong>File:</strong><br>
+    Select files OR drag image into the box below.
+    <input id="file-picker" type="file" name="file"><br>
+
+    <div id="dropbox">
+        Drag and Drop image Here
+    </div><br>
+
+    <fieldset id="progress" style="display: none">
+        <legend>Upload Progress</legend>
+
+        <div class="progress-trough">
+            <div id="progress-bar" class="progress-bar">0%</div>
+        </div>
+    </fieldset><br>
+
+    <input type="submit" value="Upload!" id="upload-button">
+</form>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/upload.js') }}"></script>
+
+</body>
+</html>
