@@ -1,1 +1,9 @@
 **/__pycache__
+*.json
+*.log
+*.out
+work_dirs/
+output/
+ouput/
+test_dir/
+*.pth

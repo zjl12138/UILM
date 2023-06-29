@@ -21,11 +21,10 @@ from mmdet.models import build_detector
 from mmdet.utils import (collect_env, get_device, get_root_logger,
                          setup_multi_processes, update_data_root)
 
-
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
     parser.add_argument('config', help='train config file path')
-    parser.add_argument('--work-dir', default='\work_dirs', help='the dir to save logs and models')
+    parser.add_argument('--work-dir', default='./work_dirs', help='the dir to save logs and models')
     parser.add_argument(
         '--resume-from', help='the checkpoint file to resume from')
     parser.add_argument(

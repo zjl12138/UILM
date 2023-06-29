@@ -1,3 +1,4 @@
+from re import U
 import json
 import os
 
@@ -70,16 +71,20 @@ def format_yolo2coco(img_folder_path, label_folder_path, out_file, sub_images=()
 
 
 if __name__ == '__main__':
-    file_name = os.listdir('train_label')
+    # file_name = os.listdir('train_label')
     # for name in file_name:
     #     suffix = os.path.splitext(os.path.basename(name))[1]
     #
     #     if suffix != '.txt':
     #         os.remove('../labels/' + name)
-    print(len(file_name))
-    format_yolo2coco(img_folder_path='./train/', label_folder_path='./train_label/', out_file='train/train.json',
+    # print(len(file_name))
+    # format_yolo2coco(img_folder_path='./train/', label_folder_path='./train_label/', out_file='train/train.json',
+    #                 sub_images=('filled.png', 'default.png'))
+    dataset_name = 'UILM'
+    format_yolo2coco(img_folder_path = f'../{dataset_name}/train/images', label_folder_path=f'../{dataset_name}/train/labels', out_file=f'../{dataset_name}/train/train.json',
                      sub_images=('filled.png', 'default.png'))
-    format_yolo2coco(img_folder_path='./test/', label_folder_path='./test_label/', out_file='test/test.json',
+
+    format_yolo2coco(img_folder_path=f'../{dataset_name}/test/images', label_folder_path=f'../{dataset_name}/test/labels', out_file=f'../{dataset_name}/test/test.json',
                      sub_images=('filled.png', 'default.png'))
 __all__ = [
     'format_yolo2coco'
